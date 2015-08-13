@@ -49,6 +49,16 @@ class ShunterTest {
   }
   
   @Test
+  def simpleSubtractTest() : Unit = {
+    var tokens = List[ExpressionToken](ValueToken(2), SubtractToken(), ValueToken(1))
+    var shunted = shunter.shuntTokens(tokens)
+    shunted match{
+      case ValueToken(2) :: ValueToken(1) :: SubtractToken() :: Nil =>
+      case _ => throw new RuntimeException("Tokens shunted incorrectly \n" + shunted)
+    }
+  }
+  
+  @Test
   def wikiTest() : Unit = {
     var tokens = List[ExpressionToken](ValueToken(12), AddToken(), ValueToken(12), MultiplyToken(), ValueToken(12), SubtractToken(), ValueToken(12))
     var shunted = shunter.shuntTokens(tokens)

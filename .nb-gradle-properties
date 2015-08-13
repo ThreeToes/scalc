@@ -8,6 +8,7 @@
       <task-names>
         <name must-exist="no">clean</name>
         <name must-exist="no">build</name>
+        <name must-exist="no">test</name>
         <name must-exist="no">fatJar</name>
       </task-names>
       <task-args/>
@@ -18,6 +19,7 @@
       <non-blocking>yes</non-blocking>
       <task-names>
         <name must-exist="no">build</name>
+        <name must-exist="no">test</name>
         <name must-exist="no">fatJar</name>
       </task-names>
       <task-args/>

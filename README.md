@@ -24,7 +24,6 @@ and run scalc-all.jar from build/libs with
 
 Known Issues
 ============
- * Negative numbers don't work
  * Running from gradle floods the readLine calls with null strings. No idea why.
  
 If you find bugs, let me know. This is a small hobby project to learn more about Scala pattern matching, so don't expect anything amazing

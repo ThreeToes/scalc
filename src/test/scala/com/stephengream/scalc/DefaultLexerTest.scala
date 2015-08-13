@@ -147,9 +147,9 @@ class DefaultLexerTest {
   
   @Test
   def checkSimple() : Unit = {
-    var tokens = lexer.tokenise("1+1")
+    var tokens = lexer.tokenise("2-1")
     tokens match{
-      case ValueToken(1) :: AddToken() :: ValueToken(1) :: Nil =>
+      case ValueToken(2) :: SubtractToken() :: ValueToken(1) :: Nil =>
       case x => throw new RuntimeException("Sequence is incorrect! " + x)
     }
   }
@@ -195,5 +195,16 @@ class DefaultLexerTest {
   @Test(expected = classOf[UnrecognisedTokenException])
   def alphanumerics() : Unit = {
     lexer.tokenise("abd")
+  }
+  
+  @Test
+  def multiplyBracketTokens() : Unit = {
+    var tokens = lexer.tokenise("3*(3-1)")
+    tokens match {
+      case ValueToken(3) :: MultiplyToken() :: LeftParenthesisToken() 
+        :: ValueToken(3) :: SubtractToken() :: ValueToken(1) 
+        :: RightParenthesisToken() :: Nil =>
+      case x => throw new RuntimeException("Got " + x)
+    }
   }
 }

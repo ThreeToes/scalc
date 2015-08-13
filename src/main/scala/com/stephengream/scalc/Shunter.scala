@@ -47,14 +47,14 @@ class DefaultShunter extends Shunter {
     case (op: OperatorToken) :: xs => {
         if(operatorStack.length > 0 && operatorPrecedence(operatorStack(0), op)){
           var top::stack = operatorStack
-          return top :: shuntTokensPrime(op :: xs, stack)
+          return top :: shuntTokensPrime(tokens, stack)
         }
         return shuntTokensPrime(xs, op :: operatorStack)
     }
     case x :: xs => throw new UnrecognisedTokenException(x.toString)
   }
-    
-  private def shuntParentheses(input: List[ExpressionToken], operatorStack: Stack[ExpressionToken]) : List[ExpressionToken] = {
+      
+  private def shuntParentheses(operatorStack: List[OperatorToken]) : List[ExpressionToken] = {
     List[ExpressionToken]()
   }
   

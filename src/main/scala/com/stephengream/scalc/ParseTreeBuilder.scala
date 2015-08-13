@@ -23,39 +23,36 @@ class DefaultTreeBuilder extends ParseTreeBuilder{
         }
         output(0)
     }
-    case ValueToken(x) :: xs => buildTreePrime(xs, output :+ ValueExpression(x))
-    case (x: OperatorToken) :: xs => buildTreePrime(xs, getExpression(output, x))
+    case ValueToken(x) :: xs => buildTreePrime(xs, ValueExpression(x) :: output)
+    case SubtractToken() :: xs => {
+        if(output.length < 2){
+          throw new UnrecognisedTokenException("Unmatched expressions!")
+        }
+        val y :: x :: os = output
+        buildTreePrime(xs, SubtractExpression(x, y) :: os)
+    }
+    case AddToken() :: xs => {
+        if(output.length < 2){
+          throw new UnrecognisedTokenException("Unmatched expressions!")
+        }
+        val y :: x :: os = output
+        buildTreePrime(xs, AddExpression(x, y) :: os)
+    }
+    case MultiplyToken() :: xs => {
+        if(output.length < 2){
+          throw new UnrecognisedTokenException("Unmatched expressions!")
+        }
+        val y :: x :: os = output
+        buildTreePrime(xs, MultiplyExpression(x, y) :: os)
+    }
+    
+    case DivisionToken() :: xs => {
+        if(output.length < 2){
+          throw new UnrecognisedTokenException("Unmatched expressions!")
+        }
+        val y :: x :: os = output
+        buildTreePrime(xs, DivisionExpression(x, y) :: os)
+    }
     case x => throw new UnrecognisedTokenException(s"Can't handle token '$x'!")
-  }
-  
-  private def getExpression(output : List[Expression], op: OperatorToken) : List[Expression] = op match{
-    case AddToken() => {
-        if(output.length < 2){
-          throw new RuntimeException
-        }
-        var x :: y :: xs = output
-        AddExpression(x, y) :: xs
-    }
-    case SubtractToken() => {
-        if(output.length < 2){
-          throw new RuntimeException
-        }
-        var x :: y :: xs = output
-        SubtractExpression(x, y) :: xs
-    }
-    case DivisionToken() =>{
-        if(output.length < 2){
-          throw new RuntimeException
-        }
-        var x :: y :: xs = output
-        DivisionExpression(x, y) :: xs
-      }
-    case MultiplyToken() => {
-        if(output.length < 2){
-          throw new RuntimeException
-        }
-        var x :: y :: xs = output
-        MultiplyExpression(x, y) :: xs
-    }
   }
 }
