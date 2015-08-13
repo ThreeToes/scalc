@@ -6,25 +6,39 @@
 
 package com.stephengream.scalc
 import Expressions._
+import scala.io.StdIn.readLine
 
 object MainApplication extends App {
-  def printTokens(x : List[ExpressionToken]) : Unit = {
-   x.foreach(y => printToken(y))
-   println()
-  }
-  
-  def printToken(tok : ExpressionToken) = tok match {
-    case x:OperatorToken => print(s" $x ")
-    case ValueToken(y) => print(s" Double $y ")
-    case _ => print("unrecognised")
-  }
-  println("Hello, world!")
   var lexer = new DefaultLexer
   var parseTreeBuilder = new DefaultTreeBuilder
   var shunter = new DefaultShunter
-  var tokens = lexer.tokenise("11+1")
-  var shunted = shunter.shuntTokens(tokens)
-  printTokens(shunted)
-  var tree = parseTreeBuilder.buildTree(shunted)
-  println(evaluate(tree))
+  var parser = new DefaultParser(lexer, shunter, parseTreeBuilder)
+
+  if (args.length == 0) {
+    prompt
+  } else {
+    printVal(args.mkString)
+  }
+  def printVal(in: String): Unit = {
+    println(evaluate(parser.parse(in)))
+  }
+
+  def prompt(): Unit = {
+    println("Type 'exit' to quit")
+    while (true) {
+      val in = readLine("> ")
+      in match {
+        case "exit" => return
+        case _ => {
+          try {
+            printVal(in)
+          } catch {
+            case e: Throwable => {
+              println(s"Error: $e.toString")
+          }
+            }
+        }
+      }
+    }
+  }
 }

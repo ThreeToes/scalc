@@ -11,4 +11,19 @@ Running Tests
 Run this
 `gradle clean build test`
 
-Currently the main application is a bit flacid. Intending to put in a command line interface and also build a GUI frontend. This is all for shiggles, so don't come complaining to me if this breaks
+Running Application
+===================
+
+Run
+`gradle run`
+
+Alternatively, run 
+`gradle clean fatJar`
+and run scalc-all.jar from build/libs with 
+`java -jar scalc-all.jar`
+
+Known Issues
+============
+ * Negative numbers don't work
+
+If you find bugs, let me know

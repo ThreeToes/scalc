@@ -10,7 +10,7 @@ trait ParseTreeBuilder {
   def buildTree(input: List[ExpressionToken]) : Expression
 }
 
-class DefaultTreeBuilder{
+class DefaultTreeBuilder extends ParseTreeBuilder{
   def buildTree(input: List[ExpressionToken]) : Expression ={
     buildTreePrime(input, Nil)
   }

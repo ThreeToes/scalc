@@ -32,3 +32,13 @@ dependencies {
 }
 
 mainClassName = "com.stephengream.scalc.MainApplication"
+
+task fatJar(type: Jar){
+    manifest {
+        attributes 'Main-Class': 'com.stephengream.scalc.MainApplication'
+        attributes 'Class-Path': 'scala-library.jar'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

@@ -15,3 +15,12 @@ trait Parser {
    */
   def parse(x: String) : Expression
 }
+
+class DefaultParser(lexer: Lexer, shunter: Shunter, parseTreeBuilder: ParseTreeBuilder) extends Parser{
+  @Override
+  def parse(x: String) : Expression = {
+    var tokens = lexer.tokenise(x)
+    var shunted = shunter.shuntTokens(tokens)
+    parseTreeBuilder.buildTree(shunted)
+  }
+}

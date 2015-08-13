@@ -7,10 +7,13 @@
       <group>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/build.gradle</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/test/scala/com/stephengream/scalc/DefaultLexerTest.scala</file>
+        <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/UnrecognisedTokenException.scala</file>
+        <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/UnmatchedParenthesisException.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/Lexer.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/Parser.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/Shunter.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/ExpressionTokens.scala</file>
+        <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/test/scala/com/stephengream/scalc/ShunterTest.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/MainApplication.scala</file>
         <file>file:/C:/Users/poiso_000/Documents/NetBeansProjects/scalc/src/main/scala/com/stephengream/scalc/Expressions.scala</file>
       </group>
