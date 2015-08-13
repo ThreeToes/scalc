@@ -5,6 +5,7 @@
  */
 
 package com.stephengream.scalc
+import Expressions._
 
 object MainApplication extends App {
   def printTokens(x : List[ExpressionToken]) : Unit = {
@@ -13,13 +14,17 @@ object MainApplication extends App {
   }
   
   def printToken(tok : ExpressionToken) = tok match {
-    case AddToken() => print(" Operator + ")
-    case SubtractToken() => print(" Operator - ")
-    case ValueToken(y) => print(s"Double $y")
+    case x:OperatorToken => print(s" $x ")
+    case ValueToken(y) => print(s" Double $y ")
     case _ => print("unrecognised")
   }
   println("Hello, world!")
   var lexer = new DefaultLexer
-  var tokenList = lexer.tokenise("11+1")
-  printTokens(tokenList)
+  var parseTreeBuilder = new DefaultTreeBuilder
+  var shunter = new DefaultShunter
+  var tokens = lexer.tokenise("11+1")
+  var shunted = shunter.shuntTokens(tokens)
+  printTokens(shunted)
+  var tree = parseTreeBuilder.buildTree(shunted)
+  println(evaluate(tree))
 }
