@@ -17,9 +17,10 @@ trait Parser {
 }
 
 class DefaultParser(lexer: Lexer, shunter: Shunter, parseTreeBuilder: ParseTreeBuilder) extends Parser{
+  private val negator = new NegativeNumberDetector
   @Override
   def parse(x: String) : Expression = {
-    var tokens = lexer.tokenise(x)
+    var tokens = negator.makeNumbersNegative(lexer.tokenise(x))
     var shunted = shunter.shuntTokens(tokens)
     parseTreeBuilder.buildTree(shunted)
   }
