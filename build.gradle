@@ -33,6 +33,10 @@ dependencies {
 
 mainClassName = "com.stephengream.scalc.MainApplication"
 
+run{
+    standardInput = System.in
+}
+
 task fatJar(type: Jar){
     manifest {
         attributes 'Main-Class': 'com.stephengream.scalc.MainApplication'

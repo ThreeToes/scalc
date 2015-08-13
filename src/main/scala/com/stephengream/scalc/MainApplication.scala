@@ -6,7 +6,7 @@
 
 package com.stephengream.scalc
 import Expressions._
-import scala.io.StdIn.readLine
+import scala.io.StdIn._
 
 object MainApplication extends App {
   var lexer = new DefaultLexer
@@ -19,14 +19,24 @@ object MainApplication extends App {
   } else {
     printVal(args.mkString)
   }
+  
+  def printHelp() : Unit = {
+    println("Please invoke with a valid equation")
+  }
+  
   def printVal(in: String): Unit = {
-    println(evaluate(parser.parse(in)))
+    try{
+      println(evaluate(parser.parse(in)))
+    }catch{
+      case e: Exception => printHelp
+    }
   }
 
   def prompt(): Unit = {
+    println
     println("Type 'exit' to quit")
     while (true) {
-      val in = readLine("> ")
+      val in = readLine("\r\n> ")
       in match {
         case "exit" => return
         case _ => {
@@ -35,8 +45,8 @@ object MainApplication extends App {
           } catch {
             case e: Throwable => {
               println(s"Error: $e.toString")
-          }
             }
+          }
         }
       }
     }
